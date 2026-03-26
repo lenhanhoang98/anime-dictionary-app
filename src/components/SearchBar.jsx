@@ -16,14 +16,14 @@ const SearchBar = () => {
     const [debouncedSearchQuery] = useDebounce(searchQuery, 500)
     const { data: searchResult } = useGetAnimeSearchQuery(debouncedSearchQuery);
 
-    const getData = () => {
-        if (searchQuery) {
+    const getData = React.useCallback(() => {
+        if (searchQuery && searchResult?.data) {
             const updatedOptions = searchResult.data.map((p) => {
                 return { title: p.title, key: p.mal_id };
             });
             setOptions(updatedOptions);
         } else { setOptions([]); }
-    };
+    }, [searchQuery, searchResult]);
 
     const onInputChange = (event, value, reason) => {
         if (value) {
@@ -35,7 +35,7 @@ const SearchBar = () => {
 
     useEffect(() => {
         getData()
-    }, [searchResult])
+    }, [getData])
 
 
     return (

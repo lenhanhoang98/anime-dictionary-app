@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Link as RouterLink, useParams, useLocation } from 'react-router-dom'
 
-import { Table, TableRow, TableCell, TableContainer, TableHead, TableBody, Paper, Grid, Box, Typography, Button, Container, Chip, Link } from '@mui/material';
+import { Table, TableRow, TableCell, TableContainer, TableHead, TableBody, Paper, Box, Typography, Button, Container, Chip, Link } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 
 import { useGetTopQuery } from '../services/jikanApi'

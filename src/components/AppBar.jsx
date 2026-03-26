@@ -32,6 +32,10 @@ const pages = [
         name: 'Schedules',
         url: `/schedules`
     },
+    {
+        name: 'Upcoming',
+        url: `/upcoming`
+    },
 ]
 
 const ResponsiveAppBar = () => {
@@ -60,31 +64,15 @@ const ResponsiveAppBar = () => {
     const dispatch = useDispatch();
 
     return (
-        <AppBar position="static">
+        <AppBar position="sticky" sx={{ top: 0, zIndex: 1100 }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
                     <Grid sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
                         <NavLink to='/'>
-                            <img src={logo} alt='app-logo' width={'80px'} style={{ marginRight: '15px' }} />
+                            <img src={logo} alt='app-logo' width={'80px'} style={{ marginRight: '15px', padding: '10px 0' }} />
                         </NavLink>
                     </Grid>
-                    {/* <Typography
-                        variant="h6"
-                        noWrap
-                        component={NavLink} to={'/'}
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        LOGO
-                    </Typography> */}
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
@@ -118,30 +106,36 @@ const ResponsiveAppBar = () => {
                             {pages?.map((page, idx) => (
                                 <MenuItem key={idx} onClick={handleCloseNavMenu}>
                                     <Link
-                                        color="inherit"
+                                        color="text.primary"
                                         underline="none"
                                         component={NavLink} to={page.url}
                                         textAlign="center"
+                                        sx={{ width: '100%', py: 1 }}
                                     >{page.name}</Link>
                                 </MenuItem>
                             ))}
                         </Menu>
                     </Box>
-                    <Grid sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}>
+                    <Grid sx={{ display: { xs: 'flex', md: 'none' }, mr: 1, flexGrow: 1 }}>
                         <NavLink to='/'>
-                            <img src={logo} alt='app-logo' width={'60px'} style={{ marginRight: '70px' }} />
+                            <img src={logo} alt='app-logo' width={'60px'} />
                         </NavLink>
                     </Grid>
-                    {/* <NavLink to='/'>
-                        <img src={logo} alt='app-logo' width={'80px'} style={{ marginRight: '15px' }} sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    </NavLink> */}
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: 1 }}>
                         {pages.map((page, idx) => (
                             <Button
                                 key={idx}
                                 onClick={handleCloseNavMenu}
                                 component={NavLink} to={page.url}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                sx={{ 
+                                    my: 2, 
+                                    color: 'text.primary', 
+                                    display: 'block',
+                                    '&.active': {
+                                        color: 'primary.main',
+                                        background: 'rgba(99, 102, 241, 0.08)',
+                                    }
+                                }}
                             >
                                 {page.name}
                             </Button>
@@ -153,11 +147,16 @@ const ResponsiveAppBar = () => {
                     </Box>
                     <Box sx={{ flexGrow: 0 }} style={{ paddingLeft: '20px' }}>
                         <IconButton
-                            sx={{ ml: 1 }}
-                            // onClick={changeTheme} 
+                            sx={{ 
+                                ml: 1,
+                                bgcolor: theme.darkTheme ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+                                '&:hover': {
+                                    bgcolor: theme.darkTheme ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                                }
+                            }}
                             onClick={() => dispatch(asyncToggleTheme())}
                             color="inherit">
-                            {theme.darkTheme === true ? <Brightness7Icon /> : <Brightness4Icon />}
+                            {theme.darkTheme === true ? <Brightness7Icon color="warning" /> : <Brightness4Icon color="primary" />}
                         </IconButton>
                     </Box>
                 </Toolbar>

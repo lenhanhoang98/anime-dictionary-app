@@ -59,16 +59,14 @@ const Upcoming = () => {
                                     height: '100%',
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    position: 'relative',
-                                    overflow: 'hidden'
                                 }}
                             >
                                 <CardActionArea
                                     component={Link}
                                     to={`/anime/${card?.mal_id}`}
-                                    sx={{ height: '100%' }}
+                                    sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
                                 >
-                                    <Box sx={{ position: 'relative', pt: '150%', overflow: 'hidden' }}>
+                                    <Box sx={{ position: 'relative', pt: '140%', overflow: 'hidden', flexShrink: 0 }}>
                                         <CardMedia
                                             component="img"
                                             image={card?.images?.jpg?.large_image_url || card?.images?.jpg?.image_url}

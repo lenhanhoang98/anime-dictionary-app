@@ -97,10 +97,10 @@ const Recommendations = () => {
 
                                     <CardActionArea
                                         onClick={() => !isFlipped && handleClick(rec, index)}
-                                        sx={{ height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
+                                        sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
                                         disabled={isFlipped}
                                     >
-                                        <Box sx={{ position: 'relative', pt: '130%', overflow: 'hidden' }}>
+                                        <Box sx={{ position: 'relative', pt: '140%', overflow: 'hidden', flexShrink: 0 }}>
                                             <CardMedia
                                                 component="img"
                                                 image={currentEntry?.images?.jpg?.large_image_url || currentEntry?.images?.jpg?.image_url}

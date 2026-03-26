@@ -100,7 +100,7 @@ const TopPage = () => {
 
     useEffect(() => {
         setPages(1);
-    }, [apiType]);
+    }, [apiType, setPages]);
 
     if (isFetching && !rows) return <Loader />
 

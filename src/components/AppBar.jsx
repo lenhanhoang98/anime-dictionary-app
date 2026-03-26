@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Button, MenuItem, Link, Grid } from '@mui/material/'
+import { AppBar, Box, Toolbar, IconButton, Menu, Container, Button, MenuItem, Link, Grid } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu';
-import AdbIcon from '@mui/icons-material/Adb';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import SearchBar from './SearchBar';
@@ -40,21 +39,12 @@ const pages = [
 
 const ResponsiveAppBar = () => {
     const [anchorElNav, setAnchorElNav] = useState(null);
-    const [anchorElUser, setAnchorElUser] = useState(null);
-
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
-    };
-
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
     };
 
     // get theme from store

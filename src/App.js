@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Routes, Route, Link, NavLink } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { Typography, Box, Container } from '@mui/material'
@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline';
 
 import './App.css'
-import { AppBar, HomePage, Random, TopPage, Recommendations, Anime, Schedules, Upcoming } from './components'
+import { AppBar, HomePage, Random, TopPage, Recommendations, Anime, Upcoming } from './components'
 import { darkTheme, lightTheme } from './theme/theme'
 import WeekDay from './components/Schedules/WeekDay';
 

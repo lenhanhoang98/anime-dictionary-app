@@ -47,9 +47,10 @@ const commonSettings = {
             styleOverrides: {
                 root: {
                     boxShadow: 'none',
-                    backdropFilter: 'blur(8px)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                    color: '#1e293b',
+                    backdropFilter: 'blur(12px)',
+                    backgroundColor: 'rgba(241, 245, 249, 0.8)', // Match background.default with alpha
+                    color: '#0f172a',
+                    borderBottom: '1px solid rgba(0,0,0,0.05)',
                 },
             },
         },
@@ -61,19 +62,20 @@ export const lightTheme = createTheme({
     palette: {
         mode: "light",
         primary: {
-            main: "#6366f1", // Indigo
+            main: "#4f46e5", // Slightly deeper Indigo
         },
         secondary: {
-            main: "#ec4899", // Pink
+            main: "#db2777", // Deeper Pink
         },
         background: {
-            default: "#f8fafc",
-            paper: "#ffffff",
+            default: "#eaedf0", // Much darker, muted background to kill 'blinding' white
+            paper: "#fcfdfe", // Not pure white, slightly tinted
         },
         text: {
             primary: "#1e293b",
-            secondary: "#64748b",
+            secondary: "#475569",
         },
+        divider: "rgba(0, 0, 0, 0.12)",
     },
 });
 

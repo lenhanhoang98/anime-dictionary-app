@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    darkTheme: !!JSON.parse(localStorage.getItem("theme")),
+    darkTheme: localStorage.getItem("theme") !== null ? JSON.parse(localStorage.getItem("theme")) : true,
 };
 
 export const themeSlice = createSlice({
@@ -14,9 +14,9 @@ export const themeSlice = createSlice({
     },
 });
 
-export const asyncToggleTheme = () => (dispatch) => {
-    const isDarkMode = !!JSON.parse(localStorage.getItem("theme"));
-    localStorage.setItem("theme", !isDarkMode);
+export const asyncToggleTheme = () => (dispatch, getState) => {
+    const nextTheme = !getState().theme.darkTheme;
+    localStorage.setItem("theme", JSON.stringify(nextTheme));
     dispatch(toggleTheme());
 };
 

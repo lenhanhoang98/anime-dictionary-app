@@ -67,65 +67,67 @@ const Recommendations = () => {
                     </Typography>
                 </Box>
 
-                <Grid container spacing={3}>
+                <Grid container spacing={2.5}>
                     {recommendations.map((rec, index) => {
                         const isFlipped = rec.activeItem === 1;
                         const currentEntry = isFlipped ? rec.entry[1] : rec.entry[0];
                         const titleText = isFlipped ? "You may love this" : "If you like this...";
 
                         return (
-                            <Grid item key={rec.mal_id} xs={12} sm={6} md={3} lg={2}>
+                            <Grid key={`${rec.mal_id}-${index}`} size={{ xs: 6, sm: 4, md: 3, lg: 2, xl: 2 }}
+                                sx={{ display: 'flex', minWidth: 0 }}
+                            >
                                 <Card
+                                    elevation={0}
                                     sx={{ 
-                                        height: '100%', 
+                                        width: '100%',
                                         display: 'flex', 
                                         flexDirection: 'column',
-                                        position: 'relative',
-                                        overflow: 'hidden',
-                                        transition: 'transform 0.4s ease, box-shadow 0.4s ease',
-                                        boxShadow: isFlipped ? '0 8px 24px rgba(236, 72, 153, 0.2)' : '0 4px 20px rgba(0,0,0,0.05)',
+                                        borderRadius: 2,
+                                        border: '1px solid',
                                         borderColor: isFlipped ? 'secondary.main' : 'divider',
-                                        borderWidth: isFlipped ? 2 : 1,
-                                        borderStyle: 'solid'
+                                        transition: 'all 0.4s ease',
+                                        boxShadow: isFlipped ? '0 8px 24px rgba(236, 72, 153, 0.2)' : 'none',
+                                        overflow: 'hidden',
+                                        '&:hover': {
+                                            borderColor: isFlipped ? 'secondary.main' : 'primary.main',
+                                            boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                                        }
                                     }}
                                 >
-                                    <Box sx={{ bgcolor: isFlipped ? 'secondary.main' : 'background.default', py: 1, textAlign: 'center' }}>
-                                        <Typography variant="caption" sx={{ fontWeight: 700, color: isFlipped ? '#fff' : 'text.secondary', textTransform: 'uppercase' }}>
+                                    <Box sx={{ bgcolor: isFlipped ? 'secondary.main' : 'background.default', py: 0.5, textAlign: 'center' }}>
+                                        <Typography variant="caption" sx={{ fontWeight: 800, color: isFlipped ? '#fff' : 'text.secondary', textTransform: 'uppercase', fontSize: '0.6rem' }}>
                                             {titleText}
                                         </Typography>
                                     </Box>
 
                                     <CardActionArea
                                         onClick={() => !isFlipped && handleClick(rec, index)}
-                                        sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
+                                        sx={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', flexGrow: 1, minWidth: 0 }}
                                         disabled={isFlipped}
                                     >
-                                        <Box sx={{ position: 'relative', pt: '140%', overflow: 'hidden', flexShrink: 0 }}>
+                                        <Box sx={{ width: '100%', aspectRatio: '2/3', overflow: 'hidden', flexShrink: 0, bgcolor: 'background.default' }}>
                                             <CardMedia
                                                 component="img"
                                                 image={currentEntry?.images?.jpg?.large_image_url || currentEntry?.images?.jpg?.image_url}
                                                 alt={currentEntry?.title}
                                                 sx={{ 
-                                                    position: 'absolute',
-                                                    top: 0, left: 0, width: '100%', height: '100%',
+                                                    width: '100%',
+                                                    height: '100%',
                                                     objectFit: 'cover',
-                                                    transition: 'transform 0.5s ease',
-                                                    '&:hover': {
-                                                        transform: !isFlipped ? 'scale(1.05)' : 'none',
-                                                    }
                                                 }}
                                             />
                                         </Box>
-                                        <CardContent sx={{ flexGrow: 1, p: 2 }}>
+                                        <CardContent sx={{ p: 1.25, display: 'flex', flexDirection: 'column', flexGrow: 1, minHeight: 90, minWidth: 0 }}>
                                             <Typography 
-                                                variant="subtitle2" 
+                                                variant="caption" 
                                                 sx={{ 
-                                                    fontWeight: 700,
-                                                    lineHeight: 1.3,
-                                                    display: '-webkit-box',
-                                                    WebkitLineClamp: 2,
-                                                    WebkitBoxOrient: 'vertical',
-                                                    overflow: 'hidden'
+                                                    fontWeight: 800,
+                                                    lineHeight: 1.25,
+                                                    color: 'text.primary',
+                                                    fontSize: '0.75rem',
+                                                    wordBreak: 'break-word',
+                                                    overflowWrap: 'break-word'
                                                 }}
                                             >
                                                 {currentEntry?.title}
@@ -134,14 +136,15 @@ const Recommendations = () => {
                                     </CardActionArea>
 
                                     {isFlipped && (
-                                        <CardActions sx={{ p: 2, pt: 0, justifyContent: 'center' }}>
+                                        <CardActions sx={{ p: 1.25, pt: 0, justifyContent: 'center', mt: 'auto' }}>
                                             <Button 
                                                 variant="contained" 
                                                 color="secondary"
                                                 fullWidth
-                                                endIcon={<ArrowForwardIosIcon sx={{ fontSize: '0.8rem !important' }}/>}
+                                                size="small"
+                                                endIcon={<ArrowForwardIosIcon sx={{ fontSize: '0.6rem !important' }}/>}
                                                 href={`/anime/${currentEntry?.mal_id}`}
-                                                sx={{ borderRadius: 2 }}
+                                                sx={{ borderRadius: 1, fontSize: '0.7rem' }}
                                             >
                                                 Details
                                             </Button>

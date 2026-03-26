@@ -15,7 +15,7 @@ export const jikanApi = createApi({
             query: (pages) => createRequest(`/seasons/upcoming?letter=&page=${pages}`)
         }),
         getTop: builder.query({
-            query: ({type, pages}) => createRequest(`/top/${type}?letter=&page=${pages}`)
+            query: ({type, pages, filter}) => createRequest(`/top/${type}?filter=${filter || ''}&page=${pages || 1}`)
         }),
         getRecommendations: builder.query({
             query: () => createRequest(`/recommendations/anime`)

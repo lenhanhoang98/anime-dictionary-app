@@ -6,5 +6,7 @@ export default configureStore({
     reducer: {
         [jikanApi.reducerPath]: jikanApi.reducer,
         theme,
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(jikanApi.middleware),
 })
